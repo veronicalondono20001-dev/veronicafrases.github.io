@@ -1,60 +1,59 @@
+<a href="https://veronicalondono20001-dev.github.io/veronicafrases.github.io/" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; background: rgba(0,0,0,0.4); color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; z-index: 1000; font-family: Arial, sans-serif; font-size: 14px; opacity: 0.8;" target="_blank" rel="noopener noreferrer">
+  Continue
+</a>
+
 <div id="container"></div>
+<!-- Audio automático -->
+<audio autoplay loop>
+  <source src="audio.mp3" type="audio/mpeg">
+  Tu navegador no soporta reproducción de audio.
+</audio>
 
 <!-- Contenedor principal para los textos en secuencia -->
 <div class="text-sequence-container">
   <!-- Primer texto - visible inicialmente -->
   <div class="text-wrapper text-item" data-index="0" style="opacity: 1;">
-    <h2 class="small-text">Embrace the unknown</h2>
+    <h2 class="small-text">Estoy en silencio, encerrado conmigo mismo.</h2>
     <h1 class="text-line">
-      The silence between thoughts is where wisdom resides.
-      In stillness, you'll find the answers that elude you in chaos.
+      EL RUIDO ME RETUMBA EN LA CABEZA COMO SI FUERA LO ÚNICO
     </h1>
-    <h2 class="small-text">Trust the process</h2>
+    <h2 class="small-text">que todavía responde.</h2>
   </div>
 
   <!-- Segundo texto - oculto inicialmente -->
   <div class="text-wrapper text-item" data-index="1" style="opacity: 0; display: none;">
-    <h2 class="small-text">Find your center</h2>
+    <h2 class="small-text">Me lo admito sin rodeos</h2>
     <h1 class="text-line">
-      In the depth of silence, listen to the whispers of your soul.
-      Every breath brings clarity, every moment holds truth.
+      TENGO MIEDO
     </h1>
-    <h2 class="small-text">Breathe deeply</h2>
+    <h2 class="small-text">No puedo seguir escondiéndolo</h2>
   </div>
 
   <!-- Tercer texto - oculto inicialmente -->
   <div class="text-wrapper text-item" data-index="2" style="opacity: 0; display: none;">
-    <h2 class="small-text">Let go completely</h2>
+    <h2 class="small-text">Siento el cuerpo apretarse.</h2>
     <h1 class="text-line">
-      Release what no longer serves you, embrace what remains.
-      The universe unfolds perfectly when you surrender to its flow.
+      ALGO ESTÁ A PUNTO DE ROMPERSE
     </h1>
-    <h2 class="small-text">Be here now</h2>
+    <h2 class="small-text">¿soy yo?</h2>
   </div>
 
   <!-- Cuarto texto - nuevo -->
   <div class="text-wrapper text-item" data-index="3" style="opacity: 0; display: none;">
-    <h2 class="small-text">Discover your truth</h2>
+    <h2 class="small-text">A cada paso dejo caer una parte vieja de mí, pesada, gastada.</h2>
     <h1 class="text-line">
-      Beneath the noise of daily life, your authentic self waits patiently.
-      Listen to its quiet voice; it knows the way home to your heart.
+      Y EN MEDIO DEL IMPULSO
     </h1>
-    <h2 class="small-text">Follow the light within</h2>
+    <h2 class="small-text">descubro que soy capaz de avanzar por mí mismo</h2>
   </div>
 
   <!-- Quinto texto - nuevo -->
   <div class="text-wrapper text-item" data-index="4" style="opacity: 0; display: none;">
-    <h2 class="small-text">Awaken to peace</h2>
+    <h2 class="small-text">El ruido llega, sí, pero ya no me destruye.</h2>
     <h1 class="text-line">
-      True peace is not the absence of chaos, but the calm within the storm.
-      It is the space between thoughts where eternity breathes.
+      MI CAOS TAMBIÉN ES UNA FORMA DE LUZ
     </h1>
-    <h2 class="small-text">Rest in awareness</h2>
-
-    <!-- Botón sutil al final del quinto texto -->
-    <a href="https://veronicalondono20001-dev.github.io/veronicafrases.github.io/" class="subtle-link" target="_blank" rel="noopener noreferrer">
-      Continue the journey
-    </a>
+    <h2 class="small-text"></h2>
   </div>
 </div>
 
@@ -129,7 +128,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     const textItems = document.querySelectorAll('.text-item');
     let currentIndex = 0;
-    const displayTime = 5000; // 15 segundos
+    const displayTime = 10000; // 15 segundos
     // Función para cambiar al siguiente texto
     function showNextText() {
       // Ocultar texto actual con transición
@@ -155,3 +154,157 @@
     setTimeout(showNextText, displayTime);
   });
 </script>
+
+El jue, 4 dic 2025, 1:35 a. m., Veronica Londoño Valencia <veronica_londono20182@elpoli.edu.co> escribió:
+  <div id="container"></div>
+
+  <!-- Contenedor principal para los textos en secuencia -->
+  <div class="text-sequence-container">
+    <!-- Primer texto - visible inicialmente -->
+    <div class="text-wrapper text-item" data-index="0" style="opacity: 1;">
+      <h2 class="small-text">Estoy en silencio, encerrado conmigo mismo.</h2>
+      <h1 class="text-line">
+        La respiración me retumba en la cabeza como si fuera lo único
+      </h1>
+      <h2 class="small-text">que todavía responde.</h2>
+    </div>
+
+    <!-- Segundo texto - oculto inicialmente -->
+    <div class="text-wrapper text-item" data-index="1" style="opacity: 0; display: none;">
+      <h2 class="small-text">Me lo admito sin rodeos</h2>
+      <h1 class="text-line">
+        Tengo miedo...
+      </h1>
+      <h2 class="small-text">No puedo seguir escondiéndolo</h2>
+    </div>
+
+    <!-- Tercer texto - oculto inicialmente -->
+    <div class="text-wrapper text-item" data-index="2" style="opacity: 0; display: none;">
+      <h2 class="small-text">Siento el cuerpo apretarse.</h2>
+      <h1 class="text-line">
+        Algo está a punto de romperse
+      </h1>
+      <h2 class="small-text">¿soy yo?</h2>
+    </div>
+
+    <!-- Cuarto texto - nuevo -->
+    <div class="text-wrapper text-item" data-index="3" style="opacity: 0; display: none;">
+      <h2 class="small-text">A cada paso dejo caer una parte vieja de mí, pesada, gastada.</h2>
+      <h1 class="text-line">
+        Y en medio del impulso
+      </h1>
+      <h2 class="small-text">descubro que soy capaz de avanzar por mí mismo</h2>
+    </div>
+
+    <!-- Quinto texto - nuevo -->
+    <div class="text-wrapper text-item" data-index="4" style="opacity: 0; display: none;">
+      <h2 class="small-text">El ruido llega, sí, pero ya no me destruye.</h2>
+      <h1 class="text-line">
+        mi caos también es una forma de luz.
+      </h1>
+      <h2 class="small-text"></h2>
+
+      <!-- Botón sutil al final del quinto texto -->
+      <a href="https://veronicalondono20001-dev.github.io/veronicafrases.github.io/" class="subtle-link" target="_blank" rel="noopener noreferrer">
+        Continue the journey
+      </a>
+    </div>
+  </div>
+
+  <!-- Estilos para el botón sutil -->
+  <style>
+    .subtle-link {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid rgba(200, 220, 220, 0.3);
+      color: rgba(200, 220, 220, 0.8);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 30px;
+      transition: all 0.4s ease;
+      opacity: 0.7;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .subtle-link:hover {
+      opacity: 1;
+      border-color: rgba(200, 220, 220, 0.6);
+      color: rgba(200, 220, 220, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtle-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .subtle-link:hover::before {
+      left: 100%;
+    }
+
+    /* Animación de aparición sutil para el botón */
+    .text-item[data-index="4"] .subtle-link {
+      animation: fadeInUp 0.8s ease 0.5s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 0.7;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <!-- Script de transición (solo maneja el HTML/DOM) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const textItems = document.querySelectorAll('.text-item');
+      let currentIndex = 0;
+      const displayTime = 10000; // 15 segundos
+      // Función para cambiar al siguiente texto
+      function showNextText() {
+        // Ocultar texto actual con transición
+        const currentItem = textItems[currentIndex];
+        currentItem.style.transition = 'opacity 1.5s ease';
+        currentItem.style.opacity = '0';
+        setTimeout(() => {
+          currentItem.style.display = 'none';
+          // Avanzar al siguiente índice (ahora hay 5 textos)
+          currentIndex = (currentIndex + 1) % textItems.length;
+          // Mostrar siguiente texto
+          const nextItem = textItems[currentIndex];
+          nextItem.style.display = 'flex';
+          nextItem.style.transition = 'opacity 1.5s ease';
+          // Forzar reflow para activar transición
+          void nextItem.offsetWidth;
+          nextItem.style.opacity = '1';
+          // Programar siguiente cambio
+          setTimeout(showNextText, displayTime);
+        }, 1500); // Tiempo de transición
+      }
+      // Iniciar el ciclo después del primer intervalo
+      setTimeout(showNextText, displayTime);
+    });
+  </script>
