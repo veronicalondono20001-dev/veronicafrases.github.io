@@ -1,173 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
+<div id="container"></div>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>[threejs] ❍ Particles Test (WIP)</title>
-    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-    <link rel="stylesheet" href="./style.css">
-    
-    <!-- Estilos para el efecto de frases con disolución -->
-    <style>
-      /* Contenedor para las frases con disolución */
-      .phrases-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-        z-index: 1000;
-        overflow: hidden;
-      }
-      
-      .dissolve-phrase {
-        position: absolute;
-        font-family: 'Inter', sans-serif;
-        font-size: 2.8rem;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.95);
-        text-align: center;
-        padding: 30px 50px;
-        max-width: 70%;
-        opacity: 0;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        letter-spacing: 0.5px;
-        line-height: 1.4;
-        transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: opacity;
-        background: rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(2px);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      
-      /* Estados de la animación */
-      .dissolve-phrase.visible {
-        opacity: 1;
-      }
-      
-      .dissolve-phrase.fade-out {
-        opacity: 0;
-      }
-      
-      /* Asegurarse que el texto existente mantenga su z-index */
-      .text-wrapper {
-        position: relative;
-        z-index: 1001;
-      }
-    </style>
-  </head>
-   
-  <body>
-    <div id="container"></div>
-    
-    <!-- Contenedor para las frases con disolución -->
-    <div class="phrases-container" id="phrasesContainer"></div>
-    
-    <div class="text-wrapper">
-      <h2 class="small-text">Embrace the unknown</h2>
-      <h1 class="text-line">
-        The silence between thoughts is where wisdom resides.
-        In stillness, you'll find the answers that elude you in chaos.
-      </h1>
-      <h2 class="small-text">Trust the process</h2>
-    </div>
-    
-    <script type="module" src="./script.js"></script>
-    
-    <!-- Script para el efecto de frases con disolución -->
-    <script>
-      // Frases para mostrar (8 frases de aproximadamente 4 segundos cada una)
-      const phrases = [
-        "In the quiet moments, truth whispers",
-        "Between breaths, worlds are born",
-        "Stillness holds infinite motion",
-        "Every ending births a new beginning",
-        "Time flows like water through consciousness",
-        "The universe dreams through your eyes",
-        "Listen to what silence is saying",
-        "In darkness, light finds its purpose"
-      ];
-      
-      // Variables de control
-      let currentPhraseIndex = 0;
-      let phraseInterval;
-      
-      // Crear el contenedor de frases si no existe
-      const phrasesContainer = document.getElementById('phrasesContainer');
-      
-      // Crear elemento para mostrar las frases
-      const phraseElement = document.createElement('div');
-      phraseElement.className = 'dissolve-phrase';
-      phrasesContainer.appendChild(phraseElement);
-      
-      // Función para mostrar la siguiente frase
-      function showNextPhrase() {
-        // Obtener la frase actual
-        const currentPhrase = phrases[currentPhraseIndex];
-        phraseElement.textContent = currentPhrase;
-        
-        // Reiniciar clases
-        phraseElement.classList.remove('visible', 'fade-out');
-        
-        // Forzar reflow para reiniciar la animación
-        void phraseElement.offsetWidth;
-        
-        // Mostrar frase (fade in)
-        phraseElement.classList.add('visible');
-        
-        // Configurar temporizadores para la transición
-        // La frase estará completamente visible durante 2 segundos
-        // y se disolverá durante 2 segundos (total 4 segundos por frase)
-        setTimeout(() => {
-          // Iniciar disolución (fade out)
-          phraseElement.classList.add('fade-out');
-        }, 2000);
-        
-        // Avanzar al siguiente índice
-        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-      }
-      
-      // Iniciar el ciclo de frases
-      function startPhrasesCycle() {
-        // Mostrar la primera frase inmediatamente
-        showNextPhrase();
-        
-        // Configurar intervalo para cambiar frases cada 4 segundos
-        phraseInterval = setInterval(showNextPhrase, 4000);
-      }
-      
-      // Detener el ciclo de frases
-      function stopPhrasesCycle() {
-        clearInterval(phraseInterval);
-        phraseElement.classList.remove('visible', 'fade-out');
-      }
-      
-      // Pausar/resumir al hacer clic (opcional, para testing)
-      document.addEventListener('click', function() {
-        if (phraseInterval) {
-          stopPhrasesCycle();
-          console.log('Ciclo de frases pausado. Haz clic nuevamente para reanudar.');
-          phraseInterval = null;
-        } else {
-          startPhrasesCycle();
-          console.log('Ciclo de frases reanudado.');
-        }
-      });
-      
-      // Iniciar cuando el DOM esté cargado
-      document.addEventListener('DOMContentLoaded', startPhrasesCycle);
-      
-      // También iniciar si el DOM ya está cargado
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', startPhrasesCycle);
-      } else {
-        startPhrasesCycle();
-      }
-    </script>
-  </body>
-</html>
+<!-- Contenedor principal para los textos en secuencia -->
+<div class="text-sequence-container">
+  <!-- Primer texto - visible inicialmente -->
+  <div class="text-wrapper text-item" data-index="0" style="opacity: 1;">
+    <h2 class="small-text">Embrace the unknown</h2>
+    <h1 class="text-line">
+      The silence between thoughts is where wisdom resides.
+      In stillness, you'll find the answers that elude you in chaos.
+    </h1>
+    <h2 class="small-text">Trust the process</h2>
+  </div>
+
+  <!-- Segundo texto - oculto inicialmente -->
+  <div class="text-wrapper text-item" data-index="1" style="opacity: 0; display: none;">
+    <h2 class="small-text">Find your center</h2>
+    <h1 class="text-line">
+      In the depth of silence, listen to the whispers of your soul.
+      Every breath brings clarity, every moment holds truth.
+    </h1>
+    <h2 class="small-text">Breathe deeply</h2>
+  </div>
+
+  <!-- Tercer texto - oculto inicialmente -->
+  <div class="text-wrapper text-item" data-index="2" style="opacity: 0; display: none;">
+    <h2 class="small-text">Let go completely</h2>
+    <h1 class="text-line">
+      Release what no longer serves you, embrace what remains.
+      The universe unfolds perfectly when you surrender to its flow.
+    </h1>
+    <h2 class="small-text">Be here now</h2>
+  </div>
+
+  <!-- Cuarto texto - nuevo -->
+  <div class="text-wrapper text-item" data-index="3" style="opacity: 0; display: none;">
+    <h2 class="small-text">Discover your truth</h2>
+    <h1 class="text-line">
+      Beneath the noise of daily life, your authentic self waits patiently.
+      Listen to its quiet voice; it knows the way home to your heart.
+    </h1>
+    <h2 class="small-text">Follow the light within</h2>
+  </div>
+
+  <!-- Quinto texto - nuevo -->
+  <div class="text-wrapper text-item" data-index="4" style="opacity: 0; display: none;">
+    <h2 class="small-text">Awaken to peace</h2>
+    <h1 class="text-line">
+      True peace is not the absence of chaos, but the calm within the storm.
+      It is the space between thoughts where eternity breathes.
+    </h1>
+    <h2 class="small-text">Rest in awareness</h2>
+
+    <!-- Botón sutil al final del quinto texto -->
+    <a href="https://veronicalondono20001-dev.github.io/veronicafrases.github.io/" class="subtle-link" target="_blank" rel="noopener noreferrer">
+      Continue the journey
+    </a>
+  </div>
+</div>
+
+<!-- Estilos para el botón sutil -->
+<style>
+  .subtle-link {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid rgba(200, 220, 220, 0.3);
+    color: rgba(200, 220, 220, 0.8);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    opacity: 0.7;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .subtle-link:hover {
+    opacity: 1;
+    border-color: rgba(200, 220, 220, 0.6);
+    color: rgba(200, 220, 220, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .subtle-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .subtle-link:hover::before {
+    left: 100%;
+  }
+
+  /* Animación de aparición sutil para el botón */
+  .text-item[data-index="4"] .subtle-link {
+    animation: fadeInUp 0.8s ease 0.5s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 0.7;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<!-- Script de transición (solo maneja el HTML/DOM) -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const textItems = document.querySelectorAll('.text-item');
+    let currentIndex = 0;
+    const displayTime = 5000; // 15 segundos
+    // Función para cambiar al siguiente texto
+    function showNextText() {
+      // Ocultar texto actual con transición
+      const currentItem = textItems[currentIndex];
+      currentItem.style.transition = 'opacity 1.5s ease';
+      currentItem.style.opacity = '0';
+      setTimeout(() => {
+        currentItem.style.display = 'none';
+        // Avanzar al siguiente índice (ahora hay 5 textos)
+        currentIndex = (currentIndex + 1) % textItems.length;
+        // Mostrar siguiente texto
+        const nextItem = textItems[currentIndex];
+        nextItem.style.display = 'flex';
+        nextItem.style.transition = 'opacity 1.5s ease';
+        // Forzar reflow para activar transición
+        void nextItem.offsetWidth;
+        nextItem.style.opacity = '1';
+        // Programar siguiente cambio
+        setTimeout(showNextText, displayTime);
+      }, 1500); // Tiempo de transición
+    }
+    // Iniciar el ciclo después del primer intervalo
+    setTimeout(showNextText, displayTime);
+  });
+</script>
