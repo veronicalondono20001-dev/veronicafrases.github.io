@@ -5,22 +5,169 @@
     <meta charset="UTF-8">
     <title>[threejs] ❍ Particles Test (WIP)</title>
     <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-<link rel="stylesheet" href="./style.css">
-
-  </head>
+    <link rel="stylesheet" href="./style.css">
     
+    <!-- Estilos para el efecto de frases con disolución -->
+    <style>
+      /* Contenedor para las frases con disolución */
+      .phrases-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        z-index: 1000;
+        overflow: hidden;
+      }
+      
+      .dissolve-phrase {
+        position: absolute;
+        font-family: 'Inter', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: center;
+        padding: 30px 50px;
+        max-width: 70%;
+        opacity: 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+        transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: opacity;
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      /* Estados de la animación */
+      .dissolve-phrase.visible {
+        opacity: 1;
+      }
+      
+      .dissolve-phrase.fade-out {
+        opacity: 0;
+      }
+      
+      /* Asegurarse que el texto existente mantenga su z-index */
+      .text-wrapper {
+        position: relative;
+        z-index: 1001;
+      }
+    </style>
+  </head>
+   
   <body>
-  <div id="container"></div>
-<div class="text-wrapper">
-  <h2 class="small-text">Embrace the unknown</h2>
-  <h1 class="text-line">
-    The silence between thoughts is where wisdom resides.
-    In stillness, you'll find the answers that elude you in chaos.
-  </h1>
-  <h2 class="small-text">Trust the process</h2>
-</div>
+    <div id="container"></div>
+    
+    <!-- Contenedor para las frases con disolución -->
+    <div class="phrases-container" id="phrasesContainer"></div>
+    
+    <div class="text-wrapper">
+      <h2 class="small-text">Embrace the unknown</h2>
+      <h1 class="text-line">
+        The silence between thoughts is where wisdom resides.
+        In stillness, you'll find the answers that elude you in chaos.
+      </h1>
+      <h2 class="small-text">Trust the process</h2>
+    </div>
+    
     <script type="module" src="./script.js"></script>
-
+    
+    <!-- Script para el efecto de frases con disolución -->
+    <script>
+      // Frases para mostrar (8 frases de aproximadamente 4 segundos cada una)
+      const phrases = [
+        "In the quiet moments, truth whispers",
+        "Between breaths, worlds are born",
+        "Stillness holds infinite motion",
+        "Every ending births a new beginning",
+        "Time flows like water through consciousness",
+        "The universe dreams through your eyes",
+        "Listen to what silence is saying",
+        "In darkness, light finds its purpose"
+      ];
+      
+      // Variables de control
+      let currentPhraseIndex = 0;
+      let phraseInterval;
+      
+      // Crear el contenedor de frases si no existe
+      const phrasesContainer = document.getElementById('phrasesContainer');
+      
+      // Crear elemento para mostrar las frases
+      const phraseElement = document.createElement('div');
+      phraseElement.className = 'dissolve-phrase';
+      phrasesContainer.appendChild(phraseElement);
+      
+      // Función para mostrar la siguiente frase
+      function showNextPhrase() {
+        // Obtener la frase actual
+        const currentPhrase = phrases[currentPhraseIndex];
+        phraseElement.textContent = currentPhrase;
+        
+        // Reiniciar clases
+        phraseElement.classList.remove('visible', 'fade-out');
+        
+        // Forzar reflow para reiniciar la animación
+        void phraseElement.offsetWidth;
+        
+        // Mostrar frase (fade in)
+        phraseElement.classList.add('visible');
+        
+        // Configurar temporizadores para la transición
+        // La frase estará completamente visible durante 2 segundos
+        // y se disolverá durante 2 segundos (total 4 segundos por frase)
+        setTimeout(() => {
+          // Iniciar disolución (fade out)
+          phraseElement.classList.add('fade-out');
+        }, 2000);
+        
+        // Avanzar al siguiente índice
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      }
+      
+      // Iniciar el ciclo de frases
+      function startPhrasesCycle() {
+        // Mostrar la primera frase inmediatamente
+        showNextPhrase();
+        
+        // Configurar intervalo para cambiar frases cada 4 segundos
+        phraseInterval = setInterval(showNextPhrase, 4000);
+      }
+      
+      // Detener el ciclo de frases
+      function stopPhrasesCycle() {
+        clearInterval(phraseInterval);
+        phraseElement.classList.remove('visible', 'fade-out');
+      }
+      
+      // Pausar/resumir al hacer clic (opcional, para testing)
+      document.addEventListener('click', function() {
+        if (phraseInterval) {
+          stopPhrasesCycle();
+          console.log('Ciclo de frases pausado. Haz clic nuevamente para reanudar.');
+          phraseInterval = null;
+        } else {
+          startPhrasesCycle();
+          console.log('Ciclo de frases reanudado.');
+        }
+      });
+      
+      // Iniciar cuando el DOM esté cargado
+      document.addEventListener('DOMContentLoaded', startPhrasesCycle);
+      
+      // También iniciar si el DOM ya está cargado
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startPhrasesCycle);
+      } else {
+        startPhrasesCycle();
+      }
+    </script>
   </body>
-  
 </html>
